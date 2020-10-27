@@ -1,0 +1,109 @@
+<div class="container-fluid mt-4 mb-3">
+    <div class="row">
+        <div class="col-lg">
+            <h1 class="text-center h1-spac text-success mb-4">
+                <!-- <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-telephone" fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
+                </svg> -->
+                <img src="./assets/images/kkh-logo.jpg" class="mx-auto border-bottom logo-sm" alt="kkh-logo.jpg">
+                เลขหมายโทรศัพท์ใน โรงพยาบาลขอนแก่น
+            </h1>
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg">
+            <div class="shadow-sm p-4 bg-white" style="min-height: 100vh;">
+                <div class="row">
+                    <div class="col-lg">
+                        <form (ngSubmit)="onSubmit()" [formGroup]="formSearch">
+                            <div class="form-row align-items-center">
+                                <div class="form-check form-check-inline mb-2">
+                                    <input class="form-check-input" type="radio" id="inlineRadio1" name="numberType"
+                                        value="2" formControlName="numberType">
+                                    <label class="form-check-label" for="inlineRadio1">เขตสุขภาพที่ 7 (Telemed)</label>
+                                </div>
+                                <div class="form-check form-check-inline mb-2">
+                                    <input class="form-check-input" type="radio" id="inlineRadio2" name="numberType"
+                                        value="1" checked="true" formControlName="numberType">
+                                    <label class="form-check-label" for="inlineRadio2">สายใน รพ.ขอนแก่น</label>
+                                </div>
+                                <div class="col-lg">
+                                    <label class="sr-only" for="inlineFormInputGroup">ค้นหา</label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                คำค้น
+                                            </div>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="" formControlName="search">
+                                    </div>
+                                </div>
+                                <div class="col-lg">
+                                    <button type="submit" class="btn btn-primary mb-2 btn-sm-w">ค้นหา</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-lg">
+                        <div class="table-responsive">
+                            <table class="table table-sm table-hover">
+                                <thead>
+                                    <tr>
+                                        <!-- <th scope="col">#</th> -->
+                                        <th scope="col" style="width: 20%">หมายเลข</th>
+                                        <th scope="col" style="width: 40%">ห้อง</th>
+                                        <th scope="col" style="width: 40%">อาคาร/สถานที่</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let phone of phones; let i = index" [attr.data-index]="i">
+                                        <td>{{phone.no}}</td>
+                                        <td>{{phone.room}}</td>
+                                        <td>{{phone.build}}</td>
+                                    </tr>
+                                    <tr *ngIf="phones.length == 0">
+                                        <td colspan="3" class="text-center">ไม่พบหมายเลข</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div *ngIf="totalpage > 1">
+                                <hr />
+                                <div class="pagination-align">
+                                    <div class="pd-pagination">
+                                        <nav class="paddlenav paddlenav-framed">
+                                            <ul>
+                                                <li>
+                                                    <span class="paddlenav-arrow paddlenav-arrow-previous"
+                                                        (click)="pageChanged(current_page-1)"
+                                                        [ngClass]="{'disabled disabledpaddlenav' : 1 == current_page}"></span>
+                                                </li>
+                                                <li>
+                                                    <p>
+                                                        <input type="text" id="page-text" class="as-text-box"
+                                                            [(ngModel)]="pageNumber" (change)=pageInput()>
+                                                        <span class="as-paginationtext">จาก</span>
+                                                        <span class="as-pagination-totalnumbers">{{totalpage}}</span>
+                                                    </p>
+                                                </li>
+                                                <li>
+                                                    <span class="paddlenav-arrow paddlenav-arrow-next"
+                                                        (click)="pageChanged(current_page+1)"
+                                                        [ngClass]="{'disabled disabledpaddlenav' : totalpage == current_page}"></span>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

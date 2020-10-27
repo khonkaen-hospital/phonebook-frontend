@@ -1,1 +1,138 @@
 /* You can add global styles to this file, and also import other style files */
+@import url(https://fonts.googleapis.com/css?family=Quicksand:500);
+@font-face {
+	font-family: 'Sarabun-Medium';
+	src: url('assets/fonts/Sarabun-Medium.ttf') format('truetype')
+}
+
+html, body {
+	font-family: "Quicksand", "Sarabun-Medium", sans-serif;
+	background-color: #f5f5f5;
+	font-size: 16px;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none !important;
+}
+
+.h1-spac {
+	letter-spacing: 2.5px;
+}
+
+.as-text-box {
+	font-size: 14px;
+	line-height: 1.52947;
+	font-weight: 400;
+	letter-spacing: -.021em;
+	width: 32px;
+	height: 32px;
+	border: 1px solid #d6d6d6;
+	border-radius: 50%;
+	text-align: center;
+	color: #666;
+}
+.as-paginationtext {
+	padding-left: 4px;
+	color: #666;
+}
+.as-pagination-totalnumbers {
+	padding-left: 4px;
+	color: #666;
+}
+.pagination-align {
+	/*position: relative;*/
+	height: 32px;
+	width: 100%;
+}
+.pd-pagination {
+	font-size: 14px;
+	line-height: 1.52947;
+	font-weight: 400;
+	letter-spacing: -.021em;
+	position: absolute;
+	width: auto;
+	left: 48%;
+}
+.paddlenav ul {
+	margin: 0;
+	padding:0;
+	list-style: none;
+}
+.paddlenav-arrow {
+	background-color: white;
+	color: #333;
+	-webkit-filter: none;
+	filter: none;
+	font-weight: 400;
+	height: 32px;
+	line-height: 32px;
+	width: 32px;
+	border-radius: 32px;
+	display:block;
+	position:absolute;
+	text-align:center;
+}
+.paddlenav-arrow:disabled,.paddlenav-arrow.disabled{ cursor:default; color:#c4c4c4; background-color:rgba(255,255,255,.3); }
+.paddlenav-arrow-next,.paddlenav-arrow-previous{margin-top:0px;top:0;}
+.disabledpaddlenav {
+	opacity: 0.2;
+}
+.paddlenav-arrow-previous {
+	left: -60px;
+}
+.paddlenav-arrow-next {
+	right: -60px;
+}
+
+.paddlenav-arrow-previous:after,
+.paddlenav-arrow-next:after {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  padding: 2px;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: transform 150ms linear;
+  border-top: 1px solid #333;
+  border-right: 1px solid #333;
+}
+.paddlenav-arrow-previous:after {
+	text-decoration: none;
+}
+.paddlenav-arrow-previous:after {
+	content: '';
+	transform: rotate(-135deg);
+}
+.paddlenav-arrow-next:after {
+	content: '';
+	transform: rotate(45deg);
+}
+.paddlenav-arrow-next:after {
+	text-decoration: none;
+}
+
+@media (max-width: 575.98px) {
+	.logo-sm {
+		float: left;
+		display: block;
+	}
+	.h1-text-sm {
+		margin-left: 115px !important;
+		display: block !important;
+	}
+	.text-smc-left {
+		text-align: left !important;
+	}
+	.h1-spac {
+		font-size: 20px;
+	}
+	.btn-sm-w {
+		width: 100% !important;
+	}
+	.pd-pagination {
+		left: 35%;
+	}	
+}

@@ -1,0 +1,110 @@
+<div class="container-fluid mt-4 mb-3">
+    <div class="row">
+        <div class="col-lg">
+            <h1 class="text-center h1-spac text-success mb-4 text-smc-left">
+                <a href="/">
+                    <img src="./assets/images/kkh-logo.jpg" class="mx-auto border-bottom logo-sm" alt="kkh-logo.jpg">
+                </a>
+                <p class="d-inline ml-4 h1-text-sm">ลงทะบียน Softphone (3CX Phone System)</p>
+                <div class="clearfix"></div>
+            </h1>
+
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg">
+            <div class="shadow-sm p-4 bg-white" style="min-height: 65vh;">
+                <div class="row">
+                    <div class="col-lg">
+
+                        <form class="form-signin" (ngSubmit)="onLogin()" [formGroup]="formLogin"
+                            *ngIf="isLogin === false">
+                            <div class="alert alert-danger text-center" role="alert" *ngIf="message != ''"
+                                style="font-size: 14px;">
+                                {{message}}
+                            </div>
+                            <h1 class="h3 mb-3 font-weight-normal">กรุณาล็อกอิน <b>Intranet</b></h1>
+                            <label for="inputUsername" class="sr-only">Username</label>
+                            <input type="text" id="inputUsername" class="form-control" placeholder="Username"
+                                formControlName="username" required autofocus>
+                            <label for="inputPassword" class="sr-only">Password</label>
+                            <input type="password" id="inputPassword" class="form-control" placeholder="Password"
+                                formControlName="password" required>
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">LOGIN</button>
+                        </form>
+
+                        <form (ngSubmit)="onSubmit()" [formGroup]="form" *ngIf="isLogin === true">
+                            <h1 class="h3 mb-3 font-weight-normal">
+                                <svg width="1.5em" height="1.5em" viewBox="0 0 16 16"
+                                    class="bi bi-check2-circle text-success" fill="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M15.354 2.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L8 9.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+                                    <path fill-rule="evenodd"
+                                        d="M8 2.5A5.5 5.5 0 1 0 13.5 8a.5.5 0 0 1 1 0 6.5 6.5 0 1 1-3.25-5.63.5.5 0 1 1-.5.865A5.472 5.472 0 0 0 8 2.5z" />
+                                </svg> ตรวจสอบข้อมูลลงทะเบียน</h1>
+                            <hr>
+                            <div class="form-row">
+                                <div class="form-group col-md-6 col-sm-12">
+                                    <label for="">หน่วยงาน</label>
+                                    <ng-select id="department" class="custom" placeholder="เลือก หน่วยงาน"
+                                        [items]="department" [clearable]="false" bindLabel="name" bindValue="id"
+                                        formControlName="department" (change)="onDepartmentChange($event)">
+                                    </ng-select>
+                                </div>
+                                <div class="form-group col-md-6 col-sm-12">
+                                    <label for="inputRoom">ห้อง</label>
+                                    <input type="text" class="form-control" id="inputRoom" formControlName="room">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6 col-sm-12">
+                                    <label for="inputArea">ชื่อ-สกุล</label>
+                                    <input type="text" class="form-control" id="inputArea" formControlName="area">
+                                </div>
+                                <div class="form-group col-md-6 col-sm-12">
+                                    <label for="inputBuild">อาคาร</label>
+                                    <ng-select id="department" class="custom" [items]="build" [clearable]="false"
+                                        placeholder="เลือก อาคาร" bindLabel="build" bindValue="build"
+                                        formControlName="build">
+                                    </ng-select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6 col-sm-12">
+                                    <label for="inputFloor">ชั้น</label>
+                                    <ng-select id="department" class="custom" [items]="floor" [clearable]="false"
+                                        placeholder="เลือก ชั้น" bindLabel="floor" bindValue="floor"
+                                        formControlName="floor">
+                                    </ng-select>
+                                </div>
+                                <div class="form-group col-md-6 col-sm-12">
+                                    <label for="inputPhone">เบอร์โทรศัพท์</label>
+                                    <input type="text" class="form-control" id="inputPhone" formControlName="phone"
+                                        readonly="true">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12 col-sm-12 text-center">
+                                    <hr>
+                                    <label for="inputBuild">Scan QRcode เพื่อลงทะเบียนการใช้งาน</label>
+                                    <qrcode [qrdata]="qr_3cx" [width]="180" [errorCorrectionLevel]="'H'"
+                                        [elementType]="'canvas'">
+                                    </qrcode>
+                                    <hr>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12 col-sm-12 text-center">
+                                    <button type="submit" class="btn btn-primary btn-sm-block">ยืนยันลงทะเบียน</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
