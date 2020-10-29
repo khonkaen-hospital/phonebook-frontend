@@ -16,7 +16,9 @@ export class SerivceService {
     @Inject('API_URL_LOGIN') private apiUrlLogin: string,
     private http: HttpClient,
     private router: Router
-  ) { }
+  ) {
+    this.apiUrl += '/phone';
+  }
 
   async decodeToken(token: string) {
     if (!token || this.jwtHelper.isTokenExpired(token)) {

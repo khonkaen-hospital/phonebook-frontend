@@ -123,5 +123,8 @@
       }
     }
   },
-  "defaultProject": "phonebook"
+  "defaultProject": "phonebook",
+  "cli": {
+    "analytics": "5e93fb0e-64af-4ddd-a66c-70ee26ec7ae5"
+  }
 }
