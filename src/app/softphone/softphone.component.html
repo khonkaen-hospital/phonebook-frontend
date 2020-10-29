@@ -9,7 +9,7 @@
                 <div class="clearfix"></div>
             </h1>
             <hr />
-            <p class="text-left"><a href="/softphones" class="btn btn-link" *ngIf="isLogin === true">ค้นหาเลขหมาย</a>
+            <p class="text-left"><a href="/" class="btn btn-link" *ngIf="isLogin === true">ค้นหาเลขหมาย</a>
         </div>
     </div>
     <div class="row">
@@ -31,7 +31,7 @@
                             <input type="password" id="inputPassword" class="form-control" placeholder="Password"
                                 formControlName="password" required>
                             <button class="btn btn-lg btn-primary btn-block" type="submit">LOGIN</button>
-                            <p class="text-center mt-5"><a href="/softphones" class="btn btn-link">ค้นหาเลขหมาย</a></p>
+                            <p class="text-center mt-5"><a href="/" class="btn btn-link">ค้นหาเลขหมาย</a></p>
                         </form>
 
                         <form (ngSubmit)="onSubmit()" [formGroup]="form" *ngIf="isLogin === true">
