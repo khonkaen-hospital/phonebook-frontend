@@ -11,6 +11,9 @@
                 เลขหมายโทรศัพท์ใน โรงพยาบาลขอนแก่น
             </h1>
             <hr />
+            <p class="text-left"><a href="/softphone" class="btn btn-link">สำหรับหัวหน้าฝ่าย/กลุ่มงาน</a> <a
+                    href="https://docs.google.com/document/d/1aTpx9Co_hpP327KC3kdQKI0JsXPaq-4Bz0863mabTuo/edit"
+                    target="_blank" class="btn btn-link">คู่มือการใช้งาน</a></p>
         </div>
     </div>
     <div class="row">
@@ -48,26 +51,96 @@
                         </form>
                     </div>
                 </div>
-                <div class="row mt-2">
+
+                <div class="row mt-2" *ngIf="numberType == 1">
                     <div class="col-lg">
                         <div class="table-responsive">
                             <table class="table table-sm table-hover">
                                 <thead>
                                     <tr>
                                         <!-- <th scope="col">#</th> -->
-                                        <th scope="col" style="width: 20%">หมายเลข</th>
-                                        <th scope="col" style="width: 40%">ห้อง</th>
-                                        <th scope="col" style="width: 40%">อาคาร/สถานที่</th>
+                                        <th scope="col" style="width: 10%">หมายเลข</th>
+                                        <th scope="col" style="width: 20%">ฝ่าย/กลุ่ม</th>
+                                        <th scope="col" style="width: 20%">อาคาร</th>
+                                        <th scope="col" style="width: 5%">ชั้น</th>
+                                        <th scope="col" style="width: 25%">ห้อง</th>
+                                        <th scope="col" style="width: 20%">จุดติดตั้ง</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let phone of phones; let i = index" [attr.data-index]="i">
                                         <td>{{phone.no}}</td>
-                                        <td>{{phone.room}}</td>
+                                        <td>{{phone.name}}</td>
                                         <td>{{phone.build}}</td>
+                                        <td>{{phone.floor}}</td>
+                                        <td>{{phone.room}}</td>
+                                        <td>{{phone.area}}</td>
                                     </tr>
                                     <tr *ngIf="phones.length == 0">
-                                        <td colspan="3" class="text-center">ไม่พบหมายเลข</td>
+                                        <td colspan="6" class="text-center">ไม่พบเลขหมาย</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div *ngIf="totalpage > 1">
+                                <hr />
+                                <div class="pagination-align">
+                                    <div class="pd-pagination">
+                                        <nav class="paddlenav paddlenav-framed">
+                                            <ul>
+                                                <li>
+                                                    <span class="paddlenav-arrow paddlenav-arrow-previous"
+                                                        (click)="pageChanged(current_page-1)"
+                                                        [ngClass]="{'disabled disabledpaddlenav' : 1 == current_page}"></span>
+                                                </li>
+                                                <li>
+                                                    <p>
+                                                        <input type="text" id="page-text" class="as-text-box"
+                                                            [(ngModel)]="pageNumber" (change)=pageInput()>
+                                                        <span class="as-paginationtext">จาก</span>
+                                                        <span class="as-pagination-totalnumbers">{{totalpage}}</span>
+                                                    </p>
+                                                </li>
+                                                <li>
+                                                    <span class="paddlenav-arrow paddlenav-arrow-next"
+                                                        (click)="pageChanged(current_page+1)"
+                                                        [ngClass]="{'disabled disabledpaddlenav' : totalpage == current_page}"></span>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2" *ngIf="numberType == 2">
+                    <div class="col-lg">
+                        <h6 class="text-left mt-2 mb-4 text-success">
+                            <svg _ngcontent-wla-c72="" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg" class="bi bi-square-fill text-success">
+                                <path _ngcontent-wla-c72=""
+                                    d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2z"></path>
+                            </svg>
+                            แสดงเฉพาะเลขหมายที่ใช้งาน</h6>
+                        <div class="table-responsive">
+                            <table class="table table-sm table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" style="width: 20%">เลขหมาย</th>
+                                        <th scope="col" style="width: 40%">HName</th>
+                                        <th scope="col" style="width: 20%">Hcode</th>
+                                        <th scope="col" style="width: 20%">จังหวัด</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let phone of phones; let i = index" [attr.data-index]="i">
+                                        <td>77 {{phone.no}}</td>
+                                        <td>{{phone.room}}</td>
+                                        <td>{{phone.build}}</td>
+                                        <td>{{phone.province}}</td>
+                                    </tr>
+                                    <tr *ngIf="phones.length == 0">
+                                        <td colspan="4" class="text-center">ไม่พบเลขหมาย</td>
                                     </tr>
                                 </tbody>
                             </table>

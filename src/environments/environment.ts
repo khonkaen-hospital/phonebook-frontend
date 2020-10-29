@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://127.0.0.1:3000',
+  apiUrl: 'http://127.0.0.1:3000/phone',
   apiUrlLogin: 'http://iconnect.kkh.go.th:3008/login/old-user'
 };
 

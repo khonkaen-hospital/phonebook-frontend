@@ -25,6 +25,7 @@ export class SoftphoneComponent implements OnInit {
   floor = [];
   decode = '';
   message = '';
+  firstActive: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -36,7 +37,6 @@ export class SoftphoneComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-    // this.qr_3cx = 'HTTPS://INTER-VOIP.3CX.ASIA:5001/P/VWVBCNHS0IW0/UY3HKG7GXH8088';
     this.qr_3cx = 'HTTPS://INTER-VOIP.3CX.ASIA:5001';
 
   }
@@ -50,9 +50,12 @@ export class SoftphoneComponent implements OnInit {
       floor: [''],
       build: [null],
       responder: [''],
-      phone: [''],
+      phone: [],
+      email: [''],
+      mobilephone: [''],
       phone_type: ['1', Validators.required],
       softphone: ['1', Validators.required],
+      uid: ['', Validators.required],
       isactive: ['1', Validators.required],
     });
 
@@ -88,14 +91,13 @@ export class SoftphoneComponent implements OnInit {
     })
   }
 
+
   getResponder(name: string) {
     this.service.responder({ responder: name }).subscribe(response => {
       if (response.result[0] !== undefined) {
-        this.message = 'ท่านได้ลงทะบียนใช้งานเรียบร้อยแล้ว';
-        this.formLogin.get('username').patchValue('');
-        this.formLogin.get('password').patchValue('');
-        this.isLogin = false;
+        this.getPhone(this.decode['uid']);
       } else {
+        this.form.get('uid').patchValue(this.decode['uid']);
         this.form.get('department').patchValue(this.decode['department']);
         this.form.get('responder').patchValue(this.decode['fullName']);
         this.form.get('area').patchValue(this.decode['fullName']);
@@ -116,18 +118,36 @@ export class SoftphoneComponent implements OnInit {
   getPhone(code: any) {
     this.service.phone(code).subscribe(response => {
       if (response.result[0] !== undefined) {
+        this.form.get('uid').patchValue(this.decode['uid'])
         this.form.get('no').patchValue(response.result[0]['no'])
         this.form.get('floor').patchValue(response.result[0]['floor']);
         this.form.get('build').patchValue(response.result[0]['build']);
-        this.form.get('department').patchValue(response.result[0]['department']);
-        this.form.get('area').patchValue(response.result[0]['area']);
         this.form.get('phone').patchValue(response.result[0]['no']);
         this.qr_3cx = response.result[0]['qr_3cx'];
+        //this.form.get('department').patchValue(response.result[0]['department']);
+        //this.form.get('area').patchValue(response.result[0]['area']);
+        //this.form.get('room').patchValue(response.result[0]['room']);
       } else {
-        this.message = 'ไม่พบเบอร์ที่ลงทะเบียนกับในระบบ';
-        this.formLogin.get('username').patchValue('');
-        this.formLogin.get('password').patchValue('');
-        this.isLogin = false;
+        this.service.softphones({ uid: this.decode['uid'] }).subscribe(_response => {
+          if (_response.result !== undefined) {
+            this.form.get('uid').patchValue(this.decode['uid'])
+            this.form.get('no').patchValue(_response.result[0]['no'])
+            this.form.get('floor').patchValue(_response.result[0]['floor']);
+            this.form.get('build').patchValue(_response.result[0]['build']);
+            this.form.get('department').patchValue(_response.result[0]['department']);
+            this.form.get('area').patchValue(_response.result[0]['area']);
+            this.form.get('phone').patchValue(_response.result[0]['no']);
+            this.form.get('room').patchValue(_response.result[0]['room']);
+            this.form.get('email').patchValue(_response.result[0]['email']);
+            this.form.get('mobilephone').patchValue(_response.result[0]['tel_mobile']);
+            this.qr_3cx = _response.result[0]['qr_3cx'];
+          } else {
+            this.message = 'ไม่พบเบอร์ที่ท่าน ลงทะเบียนกับในระบบ';
+            this.formLogin.get('username').patchValue('');
+            this.formLogin.get('password').patchValue('');
+            this.isLogin = false;
+          }
+        })
       }
     })
   }
@@ -138,7 +158,7 @@ export class SoftphoneComponent implements OnInit {
       this.service.login(this.formLogin.value).subscribe(response => {
         if (response.ok) {
           this.isLogin = response.ok;
-          const decoded = this.service.decodeToken(response.token)
+          this.service.decodeToken(response.token)
             .then(resp => {
               this.decode = resp;
               this.getResponder(resp['fullName']);

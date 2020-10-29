@@ -30,12 +30,12 @@ export class SoftphonesComponent implements OnInit {
 
   initForm() {
     this.formSearch = this.fb.group({
-      search: ['']
+      search: [' ']
     });
   }
 
   getSoftphones() {
-    this.service.softphones('').subscribe(response => {
+    this.service.softphones(this.formSearch.value).subscribe(response => {
       this.softphones = response.result;
     })
   }

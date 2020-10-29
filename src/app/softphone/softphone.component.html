@@ -5,11 +5,11 @@
                 <a href="/">
                     <img src="./assets/images/kkh-logo.jpg" class="mx-auto border-bottom logo-sm" alt="kkh-logo.jpg">
                 </a>
-                <p class="d-inline ml-4 h1-text-sm">ลงทะบียน Softphone (3CX Phone System)</p>
+                <p class="d-inline ml-4 h1-text-sm">ลงทะบียนและตรวจสอบหมายเลข Softphone (3CX Phone System)</p>
                 <div class="clearfix"></div>
             </h1>
-
             <hr />
+            <p class="text-left"><a href="/softphones" class="btn btn-link" *ngIf="isLogin === true">ค้นหาเลขหมาย</a>
         </div>
     </div>
     <div class="row">
@@ -17,7 +17,6 @@
             <div class="shadow-sm p-4 bg-white" style="min-height: 65vh;">
                 <div class="row">
                     <div class="col-lg">
-
                         <form class="form-signin" (ngSubmit)="onLogin()" [formGroup]="formLogin"
                             *ngIf="isLogin === false">
                             <div class="alert alert-danger text-center" role="alert" *ngIf="message != ''"
@@ -32,6 +31,7 @@
                             <input type="password" id="inputPassword" class="form-control" placeholder="Password"
                                 formControlName="password" required>
                             <button class="btn btn-lg btn-primary btn-block" type="submit">LOGIN</button>
+                            <p class="text-center mt-5"><a href="/softphones" class="btn btn-link">ค้นหาเลขหมาย</a></p>
                         </form>
 
                         <form (ngSubmit)="onSubmit()" [formGroup]="form" *ngIf="isLogin === true">
@@ -80,15 +80,26 @@
                                     </ng-select>
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
-                                    <label for="inputPhone">เบอร์โทรศัพท์</label>
+                                    <label for="inputPhone">หมายเลข 3cx Softphone ของท่าน</label>
                                     <input type="text" class="form-control" id="inputPhone" formControlName="phone"
                                         readonly="true">
                                 </div>
                             </div>
                             <div class="form-row">
+                                <div class="form-group col-md-6 col-sm-12">
+                                    <label for="inputEmail">Email Address</label>
+                                    <input type="text" class="form-control" id="inputEmail" formControlName="email">
+                                </div>
+                                <div class="form-group col-md-6 col-sm-12">
+                                    <label for="inputMobilePhone">เบอร์โทรศัพท์มือถือ</label>
+                                    <input type="text" class="form-control" id="inputMobilePhone"
+                                        formControlName="mobilephone">
+                                </div>
+                            </div>
+                            <div class="form-row">
                                 <div class="form-group col-md-12 col-sm-12 text-center">
                                     <hr>
-                                    <label for="inputBuild">Scan QRcode เพื่อลงทะเบียนการใช้งาน</label>
+                                    <label for="inputBuild">Scan QRcode เพื่อใช้งาน Softphone (3CX Phone System)</label>
                                     <qrcode [qrdata]="qr_3cx" [width]="180" [errorCorrectionLevel]="'H'"
                                         [elementType]="'canvas'">
                                     </qrcode>

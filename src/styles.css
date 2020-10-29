@@ -120,6 +120,7 @@ button:focus {
 		display: block;
 	}
 	.h1-text-sm {
+		font-size: 18px;
 		margin-left: 115px !important;
 		display: block !important;
 	}
@@ -134,5 +135,8 @@ button:focus {
 	}
 	.pd-pagination {
 		left: 35%;
-	}	
+	}
+	.text-sm-search {
+		font-size: 10px;
+	}
 }

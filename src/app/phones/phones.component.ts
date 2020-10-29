@@ -14,10 +14,12 @@ export class PhonesComponent implements OnInit {
   title = 'phonebook';
   formSearch: FormGroup;
   phones = [];
+  telemedicines = [];
   totalpage = 0;
   current_page = 1;
   last_page = 1;
   pageNumber = 1;
+  numberType = 1;
 
   constructor(private fb: FormBuilder,
     private service: SerivceService) {
@@ -34,6 +36,14 @@ export class PhonesComponent implements OnInit {
       numberType: ['1', Validators.required],
       search: [''],
       page: [this.pageNumber, Validators.required]
+    });
+    this.onChanges();
+  }
+
+  onChanges(): void {
+    this.formSearch.get('numberType').valueChanges.subscribe(val => {
+      this.numberType = val;
+      this.onSubmit();
     });
   }
 
