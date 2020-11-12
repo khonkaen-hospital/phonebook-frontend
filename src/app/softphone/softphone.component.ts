@@ -178,9 +178,8 @@ export class SoftphoneComponent implements OnInit {
   onSubmit() {
     if (this.form.valid) {
       this.service.updatePhone(this.form.value).subscribe(response => {
-        console.log(response);
         if (response.status == 'ok') {
-          this.router.navigate(['/softphones']);
+          this.router.navigate(['/phones']);
         }
       })
     }

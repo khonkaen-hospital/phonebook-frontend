@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'phones', component: PhonesComponent, pathMatch: 'full' },
   { path: 'softphone', component: SoftphoneComponent, pathMatch: 'full' },
   { path: 'softphones', component: SoftphonesComponent, pathMatch: 'full' },
+  { path: 'phone', loadChildren: () => import('./phone/phone.module').then(m => m.PhoneModule) },
   { path: '**', component: PageNotFoundComponent }
 ];
 

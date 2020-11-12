@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { environment } from './../environments/environment.prod';
+// import { environment } from './../environments/environment'; // localhost
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -15,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SoftphoneComponent } from './softphone/softphone.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SoftphonesComponent } from './softphones/softphones.component';
+import { MasterComponent } from './layouts/master/master.component';
 
 
 
@@ -24,7 +26,8 @@ import { SoftphonesComponent } from './softphones/softphones.component';
     PhonesComponent,
     SoftphoneComponent,
     PageNotFoundComponent,
-    SoftphonesComponent
+    SoftphonesComponent,
+    MasterComponent
   ],
   imports: [
     AppRoutingModule,

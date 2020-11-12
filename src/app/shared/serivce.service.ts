@@ -68,4 +68,12 @@ export class SerivceService {
     return this.http.post(this.apiUrl + `/softphones`, { data });
   }
 
+  getPerson(data: any): Observable<any> {
+    return this.http.post(this.apiUrl + `/person`, { data });
+  }
+
+  addPhone(data: any): Observable<any> {
+    return this.http.post(this.apiUrl + `/add-phone`, { data })
+  }
+
 }
