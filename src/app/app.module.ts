@@ -2,8 +2,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-// import { environment } from './../environments/environment.prod';
-import { environment } from './../environments/environment'; // localhost
+import { environment } from './../environments/environment.prod';
+// import { environment } from './../environments/environment'; // localhost
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgSelectModule } from '@ng-select/ng-select';
