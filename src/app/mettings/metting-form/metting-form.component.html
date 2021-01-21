@@ -1,0 +1,95 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <div class="form-row">
+        <div class="form-group col-md-12 col-sm-12">
+            <label for="mettingName">ชื่อเรื่อง</label>
+            <input type="text" class="form-control" id="mettingName" formControlName="metting_name" maxlength="100"
+                [ngClass]="{'is-invalid': submitted && f.metting_name.errors}">
+            <div class="invalid-feedback">ระบุ ชื่อเรื่อง</div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-4 col-sm-6">
+            <label for="date">วันที่ประชุม</label>
+            <input type="text" class="form-control" bsDatepicker formControlName="date" [bsConfig]="bsConfig"
+                [ngClass]="{'is-invalid': submitted && f.date.errors}">
+            <div class="invalid-feedback">ระบุ วันที่ประชุม</div>
+        </div>
+        <div class="form-group col-md-4 col-sm-6">
+            <label for="hours">เวลาที่เริ่มประชุม</label>
+            <div class="form-row">
+                <div class="form-group col-md-6 col-sm-6">
+                    <ng-select class="custom" placeholder="ชม." [items]="timeHours" [clearable]="false"
+                        bindLabel="value" bindValue="id" formControlName="time_hour"
+                        [ngClass]="{'is-invalid': submitted && f.time_hour.errors}">
+                    </ng-select>
+                    <div class="invalid-feedback">ระบุ ชม.</div>
+                </div>
+                <div class="form-group col-md-6 col-sm-6">
+                    <ng-select class="custom" placeholder="นาที" [items]="timeMinutes" [clearable]="false"
+                        bindLabel="value" bindValue="id" formControlName="time_minute"
+                        [ngClass]="{'is-invalid': submitted && f.time_minute.errors}">
+                    </ng-select>
+                    <div class="invalid-feedback">ระบุ นาที</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-md-4 col-sm-6">
+            <label for="duration">ระยะเวลา ชั่วโมง</label>
+            <div class="form-row">
+                <div class="form-group col-md-6 col-sm-6">
+                    <ng-select class="custom" placeholder="ชม." [items]="durationHours" [clearable]="false"
+                        bindLabel="value" bindValue="id" formControlName="duration_hour"
+                        [ngClass]="{'is-invalid': submitted && f.duration_hour.errors}">
+                    </ng-select>
+                    <div class="invalid-feedback">ระบุ ระยะเวลา ชม.</div>
+                </div>
+                <div class="form-group col-md-6 col-sm-6">
+                    <ng-select class="custom" placeholder="นาที" [items]="durationMinutes" [clearable]="false"
+                        bindLabel="value" bindValue="id" formControlName="duration_minute"
+                        [ngClass]="{'is-invalid': submitted && f.duration_minute.errors}">
+                    </ng-select>
+                    <div class="invalid-feedback">ระบุ ระยะเวลา นาที</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6 col-sm-12">
+            <label for="telephone">เบอร์โทรติดต่อ(ผู้ขอ)</label>
+            <input type="text" class="form-control" id="telephone" formControlName="telephone" maxlength="50"
+                [ngClass]="{'is-invalid': submitted && f.telephone.errors}">
+            <div class="invalid-feedback">ระบุ เบอร์โทรติดต่อ(ผู้ขอ)</div>
+        </div>
+        <div class="form-group col-md-6 col-sm-12" *ngIf="admin">
+            <label for="status">สถานะ</label>
+            <ng-select id="status" class="custom" placeholder="เลือก" [items]="status" [clearable]="false"
+                bindLabel="name" bindValue="id" formControlName="status">
+            </ng-select>
+        </div>
+    </div>
+    <div class="form-row" *ngIf="admin">
+        <div class="form-group col-md-12 col-sm-12">
+            <label for="link_url">Url Webex Mettings</label>
+            <input type="text" class="form-control" id="link_url" formControlName="link_url" maxlength="255">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12 col-sm-12">
+            <label for="remark">หมายเหตุ</label>
+            <textarea class="form-control" rows="2" id="remark" formControlName="remark"></textarea>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-12">
+            <hr>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12 col-sm-12">
+            <button type="submit" class="btn btn-primary btn-sm-block mr-2" [disabled]="isSaveing">
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                    *ngIf="isSaveing"></span> ส่งคำขอ</button>
+            <button type="button" class="btn btn-light btn-sm-block" (click)="closeForm()">ปิด</button>
+        </div>
+    </div>
+</form>

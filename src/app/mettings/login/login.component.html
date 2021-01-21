@@ -1,0 +1,24 @@
+<div class="row" style="padding-top: 100px;">
+    <div class="col-md-4 offset-md-4">
+        <div class="shadow-sm p-4 bg-white">
+            <div class="row">
+                <div class="col-lg">
+                    <form class="form-signin" (ngSubmit)="onSubmit()" [formGroup]="form">
+                        <div class="alert alert-danger text-center" role="alert" *ngIf="message != ''"
+                            style="font-size: 14px;">
+                            {{message}}
+                        </div>
+                        <h5 class="h5 mb-3 font-weight-normal">กรุณาล็อกอิน Intranet</h5>
+                        <label for="inputUsername" class="sr-only">Username</label>
+                        <input type="text" id="inputUsername" class="form-control" placeholder="Username"
+                            formControlName="username" required autofocus>
+                        <label for="inputPassword" class="sr-only">Password</label>
+                        <input type="password" id="inputPassword" class="form-control" placeholder="Password"
+                            formControlName="password" required>
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

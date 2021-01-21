@@ -34,7 +34,7 @@ button:focus {
 	width: 32px;
 	height: 32px;
 	border: 1px solid #d6d6d6;
-	border-radius: 50%;
+	border-radius: 10%;
 	text-align: center;
 	color: #666;
 }
@@ -174,3 +174,19 @@ button:focus {
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
   }
+
+.icon-s-16 {
+    width: 16px;
+    height: 16px;
+}
+
+.icon-s-24 {
+    width: 24px;
+    height: 24px;
+}
+
+.icon-btn-s-16 {
+	margin-top: -5px;
+    width: 16px;
+    height: 16px;
+}
