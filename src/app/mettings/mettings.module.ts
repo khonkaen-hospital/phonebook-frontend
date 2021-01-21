@@ -4,7 +4,6 @@ import { FormGroup, FormBuilder, Validator, Validators, FormsModule, ReactiveFor
 
 import { MettingsRoutingModule } from './mettings-routing.module';
 import { MettingListComponent } from './metting-list/metting-list.component';
-import { MettingDetailComponent } from './metting-detail/metting-detail.component';
 import { LoginComponent } from './login/login.component';
 import { MettingFormComponent } from './metting-form/metting-form.component';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -24,7 +23,7 @@ defineLocale('th-be', thBeLocale);
 
 
 @NgModule({
-  declarations: [MettingListComponent, MettingDetailComponent, LoginComponent, MettingFormComponent],
+  declarations: [MettingListComponent, LoginComponent, MettingFormComponent],
   imports: [
     CommonModule,
     FormsModule,
